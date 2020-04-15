@@ -23,7 +23,16 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements JobsAdapter.OnItemClickListener{
+
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_COMPANY = "company";
+    public static final String KEY_POSTER_URL = "posterUrl";
+    public static final String KEY_TYPE = "type";
+    public static final String KEY_CREATEDAT = "createdAt";
+    public static final String KEY_LOCATION = "location";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_HOWTOAPPLY = "howToApply";
 
     private RecyclerView recyclerView;
     private JobsAdapter jobsAdapter;
@@ -83,5 +92,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
             requestQueue.add(request);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intent = new Intent(MainActivity.this,
+                DetailActivity.class);
+        Jobs clickedjob = jobsArrayList.get(position);
+        intent.putExtra(KEY_COMPANY, clickedjob.getCompany());
+        intent.putExtra(KEY_TITLE, clickedjob.getTitle());
+        intent.putExtra(KEY_POSTER_URL, clickedjob.getImageUrl());
+        intent.putExtra(KEY_TYPE, clickedjob.getType());
+        intent.putExtra(KEY_CREATEDAT, clickedjob.getCreatedAt());
+        intent.putExtra(KEY_LOCATION, clickedjob.getLocation());
+        intent.putExtra(KEY_DESCRIPTION, clickedjob.getDescription());
+        intent.putExtra(KEY_HOWTOAPPLY, clickedjob.getHowtoapply());
+
+        startActivity(intent);
     }
 }
