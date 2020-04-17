@@ -23,9 +23,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements JobsAdapter.OnItemClickListener{
+public class MainActivity extends AppCompatActivity {
 
-    public static final String KEY_TITLE = "title";
+  /*  public static final String KEY_TITLE = "title";
     public static final String KEY_COMPANY = "company";
     public static final String KEY_POSTER_URL = "posterUrl";
     public static final String KEY_TYPE = "type";
@@ -33,9 +33,8 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnIte
     public static final String KEY_LOCATION = "location";
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_HOWTOAPPLY = "howToApply";
-
+*/
     private RecyclerView recyclerView;
-    private JobsAdapter jobsAdapter;
     private ArrayList<Jobs>jobsArrayList;
     private RequestQueue requestQueue;
 
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView=findViewById(R.id.recyclerView);
+        recyclerView=findViewById(R.id.recyclerviewid);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -59,32 +58,38 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnIte
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray jsonArray=response.getJSONArray("Search");
+                    JSONArray jsonArray=null;
 
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                        String title = jsonObject.getString("Title");
-                        String type = jsonObject.getString("Type");
-                        String createdat = jsonObject.getString("CreatedAt");
-                        String posterUrl = jsonObject.getString("Poster");
-
                         Jobs jobs = new Jobs();
+                        jobs.setCompany(jsonObject.getString("id"));
+                        //String title = jsonObject.getString("Title");
+                        jobs.setType(jsonObject.getString("type"));
+                        jobs.setCreatedAt(jsonObject.getString("created_at"));
+                        jobs.setImageUrl(jsonObject.getString("company_logo"));
+                       /* String type = jsonObject.getString("Type");
+                        String createdat = jsonObject.getString("created_at");
+                        String posterUrl = jsonObject.getString("company_logo");
+
+                       ;
                         jobs.setTitle(title);
                         jobs.setType(type);
                         jobs.setCreatedAt(createdat);
                         jobs.setImageUrl(posterUrl);
 
-
+*/
                         jobsArrayList.add(jobs);
                     }
-                jobsAdapter=new JobsAdapter(MainActivity.this,jobsArrayList);
-                recyclerView.setAdapter(jobsAdapter);
+               // jobsAdapter=new JobsAdapter(MainActivity.this,jobsArrayList);
+                //recyclerView.setAdapter(jobsAdapter);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+                setuprecyclerview(jobsArrayList);
             }
+
+
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -94,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnIte
             requestQueue.add(request);
     }
 
-    @Override
+  /*  @Override
     public void onItemClick(int position) {
         Intent intent = new Intent(MainActivity.this,
                 DetailActivity.class);
@@ -109,5 +114,11 @@ public class MainActivity extends AppCompatActivity implements JobsAdapter.OnIte
         intent.putExtra(KEY_HOWTOAPPLY, clickedjob.getHowtoapply());
 
         startActivity(intent);
+    }*/
+    private void setuprecyclerview(ArrayList<Jobs>jobsArrayList){
+        JobsAdapter jobsAdapter=new JobsAdapter(this,jobsArrayList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.setAdapter(jobsAdapter);
     }
 }

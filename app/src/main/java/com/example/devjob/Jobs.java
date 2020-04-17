@@ -1,24 +1,21 @@
 package com.example.devjob;
 
 public class Jobs {
-    private String title;
     private String imageUrl;
     private String type;
     private String company;
     private String createdAt;
     private String location;
     private String description;
-    private String howtoapply;
 
-    public Jobs(String location, String description, String howtoapply) {
-        this.title = title;
+    public Jobs() {
         this.imageUrl = imageUrl;
         this.type = type;
         this.createdAt = createdAt;
         this.location = location;
         this.description = description;
         this.company = company;
-        this.howtoapply = howtoapply;
+
     }
     public String getCompany() {
         return company;
@@ -31,9 +28,6 @@ public class Jobs {
         this.description = description;
     }
 
-    public void setHowtoapply(String howtoapply) {
-        this.howtoapply = howtoapply;
-    }
 
     public String getLocation() {
         return location;
@@ -47,14 +41,6 @@ public class Jobs {
         return description;
     }
 
-    public String getHowtoapply() {
-        return howtoapply;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -65,10 +51,6 @@ public class Jobs {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getImageUrl() {

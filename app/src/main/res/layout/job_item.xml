@@ -1,40 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
-    app:cardCornerRadius="8dp">
 <LinearLayout
-    android:orientation="vertical"
-    android:padding="16dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="150dp"
+    android:layout_marginTop="5dp"
+    android:padding="8dp"
+    android:background="@drawable/bgg"
+    android:id="@+id/container">
+
 
     <ImageView
-        android:id="@+id/posterImageView"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/loading_shape"
+        android:id="@+id/company_logo"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
-    <TextView
-        android:id="@+id/titleTextView"
-        android:text="Title"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/typeTextView"
-        android:text="Type"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/created_atTextView"
-        android:text="created_at"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="130dp"
+        android:orientation="vertical"
+        android:layout_margin="8dp">
+
+
+        <TextView
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/company_name"
+            android:text="Company Title"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:textColor="#fff"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type"
+            android:id="@+id/type"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/created_at"
+            android:text="Tue Apr 14"
+            android:layout_marginTop="10dp"
+            />
+
+
+
+    </LinearLayout>
+
+
 </LinearLayout>
-    </android.support.v7.widget.CardView>
